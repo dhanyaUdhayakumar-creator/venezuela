@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Explore Venezuela</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header, footer {
+    background-color: #003366;
+    color: white;
+    text-align: center;
+    padding: 20px;
+  }
+  /* Navigation moved to top-left corner, vertical buttons */
+  nav {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+  }
+  nav button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #003366;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 140px;
+    text-align: left;
+  }
+  nav button:hover {
+    background-color: #002244;
+  }
+  section {
+    display: none;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 5px #ccc;
+  }
+  .active {
+    display: block;
+  }
+  .place {
+    margin-bottom: 25px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #f9f9f9;
+  }
+  .place img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  .photo-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+  }
+  .photo-gallery > div {
+    box-shadow: 0 0 5px #ccc;
+    padding: 10px;
+    border-radius: 8px;
+    background: #fff;
+    text-align: center;
+  }
+  .photo-gallery a {
+    display: block;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+  .photo-gallery a:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #003366;
+  }
+  .photo-gallery img {
+    width: 100%;
+    display: block;
+    border-radius: 5px;
+  }
+  form input, form textarea {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  input[type="submit"] {
+    background-color: #003366;
+    color: white;
+    cursor: pointer;
+  }
+  input[type="submit"]:hover {
+    background-color: #002244;
+  }
+  a.source-link {
+    display: inline-block;
+    margin-top: 5px;
+    font-size: 0.9em;
+    color: #003366;
+    text-decoration: none;
+  }
+  a.source-link:hover {
+    text-decoration: underline;
+  }
+  .video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 ratio */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    background: black;
+    border-radius: 8px;
+  }
+  .video-container iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+  }
+  /* Additional padding on body so fixed nav doesn't cover content */
+  body {
+    padding-left: 180px; /* width of nav + some spacing */
+  }
+
+  /* Home page pattern styling */
+  #home {
+    background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+    color: #003366;
+    text-align: center;
+  }
+  #home img {
+    max-width: 300px;
+    margin: 20px 0;
+    border: 5px solid #003366;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 51, 102, 0.7);
+  }
+  #home .history {
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 10px;
+    padding: 15px;
+    max-width: 700px;
+    margin: 0 auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  #home h2 {
+    font-size: 2.5rem;
+    margin-top: 0;
+  }
+  #home p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+  }
+
+  /* Footer minor fix so no double footer */
+  footer p {
+    margin: 0;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Explore Venezuela</h1>
+  <p>Your Ultimate Tourist Guide</p>
+</header>
+
+<nav>
+  <button onclick="showSection('home')">Home</button>
+  <button onclick="showSection('Explore')">Explore</button>
+  <button onclick="showSection('Pictures')">Pictures</button>
+  <button onclick="showSection('contact')">Contact</button>
+  <button onclick="showSection('Bon Appetit')">Bon Appetit</button>
+</nav>
+
+<!-- Home Section -->
+<section id="home" class="active">
+  <h2>Welcome to Venezuela❤️!</h2>
+  <p>
+    Discover the beauty of Venezuela — from Angel Falls to the Caribbean coast.
+    Use the buttons above to explore more.
+  </p>
+  <!-- Venezuela Flag -->
+  <img 
+    src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Flag_of_Venezuela.svg/800px-Flag_of_Venezuela.svg.png" 
+    alt="Flag of Venezuela" 
+  />
+  
+  <div class="history">
+    <h3>Brief History of Venezuela</h3>
+    <p>
+      Venezuela, officially known as the Bolivarian Republic of Venezuela, is a country rich in culture and natural beauty.
+      It was originally inhabited by various indigenous peoples before Christopher Columbus arrived in 1498.
+      Venezuela gained independence from Spain in 1821, with Simón Bolívar playing a key role in the liberation of several South American countries.
+      Today, Venezuela is known for its diverse landscapes, from tropical beaches to the Andes Mountains and the Amazon rainforest.
+    </p>
+  </div>
+  <p style="margin-top: 30px; font-style: italic; font-weight: bold;">
+    Freedom from desire leads to inner peace | visit Venezuela ❤️
+  </p>
+  <h2>Facts about Venezuela</h2>
+
+  <h3>Why is Venezuela special?</h3>
+  <p>Venezuela is known for its incredible natural diversity, from the towering Angel Falls—the world’s highest waterfall—to the unique tabletop mountains called tepuis, vibrant Caribbean beaches, and vast Amazon rainforest. It’s famous for its rich culture, music, and warm, welcoming people.</p>
+
+  <h3>How old is Venezuela?</h3>
+  <p>Venezuela, officially the Bolivarian Republic of Venezuela, was founded as a nation in 1811. The land itself has a history dating back thousands of years with indigenous civilizations and colonial influences, now a dynamic country with diverse ecosystems and cultural heritage.</p>
+
+  <h3>What is Venezuela’s slogan?</h3>
+  <p>Venezuela’s official motto is <em>“¡Independencia y patria socialismo!”</em> which translates to “Independence and homeland socialism.” Its national colors—yellow, blue, and red—represent wealth, the sea, and the blood of independence heroes.</p>
+<h2>Venezuela: What to Do, What to See in this Vibrant Country</h2>
+  <p>
+    Ah, Venezuela! A land full of contrasts and wonders, where nature meets culture in breathtaking ways. From the towering Angel Falls to the mystical tepuis, from lively Caribbean beaches to the lush Amazon jungle, Venezuela offers adventures for every kind of traveler. It’s a country where you can lose yourself in rich traditions, vibrant music, delicious cuisine, and warm hospitality. Whether exploring colonial towns, hiking through pristine national parks, or diving into the vibrant local festivals, Venezuela invites you to discover beauty, passion, and life in its purest form.
+  </p>
+  
+
+  <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-top: 20px;">
+    <a href="https://ospreyexpeditions.com/wp-content/uploads/2021/03/Venezuela-Los-Roques-Angel-Falls-Orinoco-Roraima-Caribbean-honeymoon-9.jpg" target="_blank" rel="noopener" style="flex: 1 1 300px; max-width: 330px;">
+      <img src="https://ospreyexpeditions.com/wp-content/uploads/2021/03/Venezuela-Los-Roques-Angel-Falls-Orinoco-Roraima-Caribbean-honeymoon-9.jpg" alt="Los Roques & Angel Falls" style="width: 100%; height: auto; border-radius: 8px;" />
+    </a>
+    <a href="https://worldlist.vision/files/1032/sight_pic_big_2532.jpg" target="_blank" rel="noopener" style="flex: 1 1 300px; max-width: 330px;">
+      <img src="https://worldlist.vision/files/1032/sight_pic_big_2532.jpg" alt="Orinoco River Region" style="width: 100%; height: auto; border-radius: 8px;" />
+    </a>
+    <a href="https://lp-cms-production.imgix.net/2022-03/iStock-501861673%20RFC.jpg?auto=format,compress&q=72&w=1095&fit=crop&crop=faces,edges" target="_blank" rel="noopener" style="flex: 1 1 300px; max-width: 330px;">
+      <img src="https://lp-cms-production.imgix.net/2022-03/iStock-501861673%20RFC.jpg?auto=format,compress&q=72&w=1095&fit=crop&crop=faces,edges" alt="Tepui Landscape" style="width: 100%; height: auto; border-radius: 8px;" />
+    </a>
+  </div>
+</section>
+
+<!-- Tourist Places Section -->
+<section id="Explore">
+  <h2>Top Tourist Places</h2>
+
+  <div class="place">
+    <h3> Exploring Angel Falls</h3>
+    <p>The world's tallest waterfall located in Canaima National Park.</p>
+    <a
+      href="https://www.britannica.com/place/Angel-Falls"
+      target="_blank"
+      rel="noopener"
+      class="source-link"
+    >Learn more on Britannica</a>
+     <h2>Venezuela Travel Videos</h2>
+    <iframe
+      src="https://www.youtube.com/embed/mKHBDQ1kTJE"
+      title="Venezuela Travel Video - Angel Falls"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+      loading="lazy">
+    </iframe>
+  </div>
+
+  <div class="place">
+    <h3>Morrocoy National Park</h3>
+    <p>Beautiful beaches, coral reefs, and islands in western Venezuela.</p>
+    <a
+      href="https://en.wikipedia.org/wiki/Morrocoy_National_Park"
+      target="_blank"
+      rel="noopener"
+      class="source-link"
+    >Learn more on Wikipedia</a>
+    <iframe
+      src="https://www.youtube.com/embed/ZeX1AP1_jHQ"
+      title="Morrocoy National Park"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+      loading="lazy">
+    </iframe>
+  </div>
+
+  <div class="place">
+    <h3>Roraima Mountain</h3>
+    <p>A flat-top mountain popular for hiking and its surreal landscape.</p>
+    <a
+      href="https://en.wikipedia.org/wiki/Mount_Roraima"
+      target="_blank"
+      rel="noopener"
+      class="source-link"
+    >Learn more on Wikipedia</a>
+  
+    <iframe
+      src="https://www.youtube.com/embed/ejN-k6Ie5QY "
+      title="Roraima Mountain Trek"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+      loading="lazy">
+    </iframe>
+  
+  </div>
+  <div class="place">
+    <h3>Los Roques Archipelago</h3>
+    <p>A stunning national park made up of over 300 islands and cays, famous for pristine beaches and kite surfing.</p>
+    <a href="https://en.wikipedia.org/wiki/Los_Roques_Archipelago" target="_blank" rel="noopener" class="source-link">Learn more on Wikipedia</a>
+  
+    <iframe
+      src="https://www.youtube.com/embed/YA_pHUwA08o"
+      title="Los Roques Archipelago"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+      loading="lazy">
+    </iframe></div>
+
+  <div class="place">
+    <h3>Medanos de Coro</h3>
+    <p>The largest desert area in Venezuela with impressive sand dunes.</p>
+    <a href="https://en.wikipedia.org/wiki/Medanos_de_Coro" target="_blank" rel="noopener" class="source-link">Learn more on Wikipedia</a>
+  
+    <iframe
+      src="https://www.youtube.com/embed/6b0ziB5HCLY"
+      title="Medanos de Coro"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+      loading="lazy">
+    </iframe></div>
+
+  <div class="place">
+    <h3>Caracas</h3>
+    <p>The bustling capital city offering rich culture, museums, and vibrant nightlife.</p>
+    <a href="https://en.wikipedia.org/wiki/Caracas" target="_blank" rel="noopener" class="source-link">Learn more on Wikipedia</a>
+  
+    <iframe
+      src="https://www.youtube.com/embed/zPvQkXscm7M"
+      title="Caracas City Tour"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+      loading="lazy">
+    </iframe>
+  </div>
+
+</section>
+
+<!-- Photos Section -->
+<section id="Pictures">
+  <h2>Photo Gallery</h2>
+  <div class="photo-gallery">
+
+    <!-- Photo 1 -->
+    <div>
+      <a href="https://cdn.britannica.com/81/155181-050-CE1B56BF/Angel-Falls-waterfall-world-Rio-Churun-Venezuela.jpg?w=300" target="_blank" rel="noopener">
+        <img src="https://cdn.britannica.com/81/155181-050-CE1B56BF/Angel-Falls-waterfall-world-Rio-Churun-Venezuela.jpg?w=300" alt="Angel Falls" 
+             onerror="this.onerror=null;this.src='https://via.placeholder.com/330x220?text=Angel+Falls';" />
+      </a>
+      <p>The sound of water is worth more than all the poet's words ❤️.</p>
+      <p><a href="https://www.britannica.com/place/Angel-Falls" target="_blank" rel="noopener" class="source-link">Learn more about Angel Falls</a></p>
+    </div>
+
+    <!-- Photo 2 -->
+    <div>
+      <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Cocotero_en_Cayo_Sombrero.jpg/330px-Cocotero_en_Cayo_Sombrero.jpg" target="_blank" rel="noopener">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Cocotero_en_Cayo_Sombrero.jpg/330px-Cocotero_en_Cayo_Sombrero.jpg" alt="Morrocoy National Park" 
+             onerror="this.onerror=null;this.src='https://via.placeholder.com/330x220?text=Morrocoy+National+Park';" />
+      </a>
+      <p>We live in a world that's full of beauty ❤️.</p>
+      <p><a href="https://en.wikipedia.org/wiki/Morrocoy_National_Park" target="_blank" rel="noopener" class="source-link">Learn more about Morrocoy National Park</a></p>
+    </div>
+
+    <!-- Photo 3 -->
+<div>
+  <a href="https://cdn.mos.cms.futurecdn.net/LHWnjs4aAtYuLioaF8CnMM.jpg" target="_blank" rel="noopener">
+    <img src="https://cdn.mos.cms.futurecdn.net/LHWnjs4aAtYuLioaF8CnMM.jpg" alt="Photo"
+         onerror="this.onerror=null;this.src='https://via.placeholder.com/330x220?text=Image+Unavailable';" />
+  </a>
+  <p>Explore the wild beauty of Venezuela’s Caribbean and highlands ❤️.</p>
+  <p><a href="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.livescience.com%2Fplanet-earth%2Fgeology%2Fmount-roraima-the-lost-world-isolated-for-millions-of-years-that-indigenous-people-call-the-house-of-the-gods&psig=AOvVaw1PISrl4K1LB1KApk9KtqU3&ust=1754642968816000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCLii48b96v0CFQAAAAAdAAAAABAE" target="_blank" rel="noopener" class="source-link">Learn more about Roraima</a></p>
+</div>
+<!-- Photo 4 (Los Roques & Angel Falls) -->
+<div>
+  <a href="https://ospreyexpeditions.com/wp-content/uploads/2021/03/Venezuela-Los-Roques-Angel-Falls-Orinoco-Roraima-Caribbean-honeymoon-9.jpg" target="_blank" rel="noopener">
+    <img src="https://ospreyexpeditions.com/wp-content/uploads/2021/03/Venezuela-Los-Roques-Angel-Falls-Orinoco-Roraima-Caribbean-honeymoon-9.jpg" alt="Los Roques & Angel Falls"
+         onerror="this.onerror=null;this.src='https://via.placeholder.com/330x220?text=Los+Roques';" />
+  </a>
+  <p>Explore the wild beauty of Venezuela’s Caribbean and highlands ❤️.</p>
+  <p><a href="https://ospreyexpeditions.com" target="_blank" rel="noopener" class="source-link">Learn more about Osprey Expeditions</a></p>
+</div>
+
+<!-- Photo 5 (Orinoco River Region) -->
+<div>
+  <a href="https://worldlist.vision/files/1032/sight_pic_big_2532.jpg" target="_blank" rel="noopener">
+    <img src="https://worldlist.vision/files/1032/sight_pic_big_2532.jpg" alt="Orinoco River Region"
+         onerror="this.onerror=null;this.src='https://via.placeholder.com/330x220?text=Orinoco+River';" />
+  </a>
+  <p>Rivers, forests, and legends of the Orinoco basin ❤️.</p>
+  <p><a href="https://worldlist.vision/" target="_blank" rel="noopener" class="source-link">Explore WorldList Vision</a></p>
+</div>
+
+<!-- Photo 6 (Tepui Landscape) -->
+<div>
+  <a href="https://lp-cms-production.imgix.net/2022-03/iStock-501861673%20RFC.jpg?auto=format,compress&q=72&w=1095&fit=crop&crop=faces,edges" target="_blank" rel="noopener">
+    <img src="https://lp-cms-production.imgix.net/2022-03/iStock-501861673%20RFC.jpg?auto=format,compress&q=72&w=1095&fit=crop&crop=faces,edges" alt="Tepui Landscape"
+         onerror="this.onerror=null;this.src='https://via.placeholder.com/330x220?text=Tepui+Landscape';" />
+  </a>
+  <p>Flat-topped mountains touching the clouds — a lost world ❤️.</p>
+  <p><a href="https://www.lonelyplanet.com" target="_blank" rel="noopener" class="source-link">See on Lonely Planet</a></p>
+</div>
+
+
+</section>
+
+
+
+<!-- Contact Section -->
+<section id="contact">
+  <h2>Contact Us</h2>
+  <p>Send us your feedback or questions about Venezuela tourism!</p>
+  <form id="contactForm" onsubmit="submitForm(event)">
+    <label for="name">Name:</label>
+    <input id="name" name="name" required type="text" placeholder="Your name" />
+    <label for="email">Email:</label>
+    <input id="email" name="email" required type="email" placeholder="Your email" />
+    <label for="message">Message:</label>
+    <textarea id="message" name="message" required rows="5" placeholder="Your message"></textarea>
+    <input type="submit" value="Send" />
+  </form>
+</section>
+
+<!-- Local Foods Section -->
+<!-- Local Foods Section -->
+<section id="Bon Appetit">
+  <h2>Traditional Foods from Venezuela</h2>
+  
+  <div class="place food">
+    <h3>Arepas (Caracas and Nationwide)</h3>
+    <p>Arepas are cornmeal patties that are grilled, baked, or fried and stuffed with various fillings like cheese, shredded beef, or black beans. A staple Venezuelan dish found everywhere.</p>
+  </div>
+  
+  <div class="place food">
+    <h3>Guayanés Cheese (Angel Falls Region)</h3>
+    <p>A fresh, white cheese typical in the Guayana region near Angel Falls, often enjoyed with cassava bread or in arepas.</p>
+  </div>
+  
+  <div class="place food">
+    <h3>Fried Fish (Morrocoy National Park)</h3>
+    <p>Freshly caught fish from the Caribbean coast, usually fried and served with coconut rice and salad — perfect after a beach day.</p>
+  </div>
+  
+  <div class="place food">
+    <h3>Casabe (Roraima Region)</h3>
+    <p>Traditional cassava flatbread made by indigenous groups around the Roraima mountain area.</p>
+  </div>
+  
+  <div class="place food">
+    <h3>Patacones (Los Roques Archipelago)</h3>
+    <p>Fried green plantains served as a side or snack, often accompanied by seafood dishes in the islands.</p>
+  </div>
+  
+  <div class="place food">
+    <h3>Carupanero Dulce (Medanos de Coro)</h3>
+    <p>A sweet made from the carupan fruit, typical of the arid region around Coro, enjoyed as a traditional dessert.</p>
+  </div>
+  
+</section>
+
+
+<footer>
+  <p>&copy; 2025 Explore Venezuela❤️. All rights reserved.</p>
+</footer>
+
+<script>
+  function showSection(id) {
+    const sections = document.querySelectorAll('section');
+    sections.forEach(section => {
+      if(section.id === id) {
+        section.classList.add('active');
+      } else {
+        section.classList.remove('active');
+      }
+    });
+  }
+
+  function submitForm(event) {
+    event.preventDefault();
+    alert('Thank you for your message! We will get back to you shortly.');
+    document.getElementById('contactForm').reset();
+  }
+</script>
+
+</body>
+</html>
